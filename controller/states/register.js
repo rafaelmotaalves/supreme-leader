@@ -4,7 +4,5 @@ class StateRegister {
         this.name = "state_register"
     }
     
-    handleEvent(data) {
-
-    }
+    handleEvent() {}
 }

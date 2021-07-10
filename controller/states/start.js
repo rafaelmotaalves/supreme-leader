@@ -4,7 +4,5 @@ class StateStart {
         this.name = "state_start"
     }
 
-    handleEvent() {
-
-    }
+    handleEvent() {}
 }

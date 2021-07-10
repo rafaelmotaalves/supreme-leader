@@ -6,13 +6,14 @@ class Game {
     }
 
     handleEvent(from, data) {
+        console.log(from, data)
         this.state.handleEvent(from, data)
     }
 
     addPlayer(id, name) {
-        this.players[id] = { name }
+        this.players[id] = { name, impostor: false }
         this.observer.emit("players")
-        if (airconsole.getControllerDeviceIds().length === Object.keys(this.players).length) {
+        if (airconsole.getControllerDeviceIds().length === this.getPlayers().length) {
             this.startGame()
         }
     }
@@ -27,9 +28,32 @@ class Game {
             }
         })
     }
+    
+    getNumberOfImpostors() {
+        return 1;
+    }
+
+    allocatePlayers() {
+        for (let i = 0; i < this.getNumberOfImpostors(); i++) {
+            const notImpostors = this.getPlayers().filter(player => !player.impostor)
+            const randomIndex = Math.floor(Math.random()*notImpostors.length)
+
+            const impostorId = notImpostors[randomIndex].id
+            this.players[impostorId].impostor = true
+        }
+    }
+
+    notificatePlayerRoles() {
+        this.getPlayers().forEach(player => {
+            console.log(player)
+            airconsole.message(player.id, { event: EVENT_PLAYER_ROLE, impostor: player.impostor })
+        })
+    }
 
     startGame() {
         this.setState(new StateStart(this))
+        this.allocatePlayers()
+        this.notificatePlayerRoles()
     }
 
     setState(state) {

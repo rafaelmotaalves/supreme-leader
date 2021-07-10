@@ -8,7 +8,9 @@
     <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
     <script type="text/javascript" src="./shared/observer.js"></script>
     <script type="text/javascript" src="./shared/util.js"></script>
+    <script type="text/javascript" src="./shared/events.js"></script>
     <script type="text/javascript" src="./controller/states/register.js"></script>
+    <script type="text/javascript" src="./controller/states/waiting.js"></script>
     <script type="text/javascript" src="./controller/states/start.js"></script>
     <script type="text/javascript" src="./controller/player.js"></script>
     <script type="text/javascript" src="./controller/main.js"></script>
@@ -22,8 +24,12 @@
             <input type="text" id="input_name" name="name" />
             <button type="submit">Enviar</button>
         </form>
+    </div>    
+    <div class="state" id="state_waiting" hidden=true> 
+        <h1>Waiting for other players</h1>
     </div>
     <div class="state" id="state_start" hidden=true>
+        <h1 id="role"></h1>
         <h1>Game started</h1>
     </div>
 

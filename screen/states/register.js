@@ -7,7 +7,7 @@ class StateRegister {
     handleEvent(from, data) {
         const { event } = data
 
-        if (event === "register_player") {
+        if (event === EVENT_REGISTER_PLAYER) {
             this.game.addPlayer(from, data.name)
         }
     }
