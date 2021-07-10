@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
+    <script type="text/javascript" src="./shared/observer.js"></script>
+    <script type="text/javascript" src="./shared/util.js"></script>
+    <script type="text/javascript" src="./controller/states/register.js"></script>
+    <script type="text/javascript" src="./controller/states/start.js"></script>
+    <script type="text/javascript" src="./controller/player.js"></script>
+    <script type="text/javascript" src="./controller/main.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="state" id="state_register">
+        <form id="register_player_form">
+            Name:
+            <input type="text" id="input_name" name="name" />
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <div class="state" id="state_start" hidden=true>
+        <h1>Game started</h1>
+    </div>
+
+</body>
+
+</html>
