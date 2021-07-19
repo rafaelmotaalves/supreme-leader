@@ -10,6 +10,8 @@ class StateWaiting {
 
         if (from == AirConsole.SCREEN && event === EVENT_PLAYER_ROLE) {
             this.player.setImpostor(data.impostor)
+        } else if (from === AirConsole.SCREEN && event === EVENT_VOTE_END) {
+            this.player.endVote();
         }
     }
 }

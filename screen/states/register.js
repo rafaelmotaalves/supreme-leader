@@ -11,4 +11,10 @@ class StateRegister {
             this.game.addPlayer(from, data.name)
         }
     }
+
+    // when the state can run in infinite time
+    // these functions can return null
+    getDuration = () => null;
+
+    nextEvent = () => null;
 }

@@ -12,9 +12,10 @@
     <script type="text/javascript" src="./controller/states/register.js"></script>
     <script type="text/javascript" src="./controller/states/waiting.js"></script>
     <script type="text/javascript" src="./controller/states/start.js"></script>
+    <script type="text/javascript" src="./controller/states/vote.js"></script>
     <script type="text/javascript" src="./controller/player.js"></script>
     <script type="text/javascript" src="./controller/main.js"></script>
-    <title>Document</title>
+    <title>Supreme Leader</title>
 </head>
 
 <body>
@@ -32,7 +33,11 @@
         <h1 id="role"></h1>
         <h1>Game started</h1>
     </div>
-
+    <div class="state" id="state_vote" hidden=true>
+        <h1>Voting started</h1>
+        <div id="players">
+        </div>
+    </div>
 </body>
 
 </html>

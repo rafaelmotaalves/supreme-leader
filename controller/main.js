@@ -33,4 +33,23 @@ window.addEventListener("load", function() {
         }
     })
 
+    player.observer.listen("players", function() {
+        const playerList = document.getElementById("players")
+        playerList.innerHTML = ""
+    
+        player.getPlayers().forEach(p => {
+            const container = document.createElement("div")
+            const button = document.createElement("button")
+
+            container.appendChild(button)
+
+            button.onclick = () => {
+                player.votePlayer(p)
+            }
+    
+            button.innerHTML += p.name
+            playerList.appendChild(container)
+        })
+    })
+
 })

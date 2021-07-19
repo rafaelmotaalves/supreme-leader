@@ -2,6 +2,23 @@
 const airconsole = new AirConsole();
 
 const game = new Game()
+const fps = 1;
+
+// game loop
+setInterval(function () {
+    game.update()
+
+    const counter = document.getElementById("counter");
+    if (game.endState) {
+        now = new Date()
+        const remainingTime = (game.endState - now)
+        if (game.endState - now >= 0) {
+            counter.innerHTML = formatCounter(remainingTime);
+        }
+    } else {
+        counter.innerHTML = "";
+    }
+}, 1000 / 2)
 
 airconsole.onMessage = function (from, data) {
     game.handleEvent(from, data)
@@ -21,6 +38,29 @@ game.observer.listen("players", () => {
 
 game.observer.listen("state", function() {
     hideAllStates()
-    console.log("STATE")
     document.getElementById(game.state.name).hidden = false
 })
+
+game.observer.listen("leader", function() {
+    const leaderElem = document.getElementById("leader")
+    if (game.leader) {
+        leaderElem.innerHTML = game.leader.name + " is the new Supreme Leader"
+    } else {
+        leaderElem.innerHTML = "The election tied, no leader was elected this round."
+    }
+
+})
+
+function formatCounter(milliseconds) {
+    const seconds = Math.floor(milliseconds / 1000) % 60;
+    const minutes = Math.floor(seconds / 60);
+
+    const paddedSeconds = padNumber(seconds);
+    const paddedMinutes = padNumber(minutes);
+
+    return `${paddedMinutes}:${paddedSeconds}`;
+}
+
+function padNumber(number) {
+    return (number < 10) ? "0" + number : number;
+}
