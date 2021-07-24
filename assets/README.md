@@ -14,7 +14,7 @@
 | #524834 | rgb(82, 72, 52)    |
 
 ## Double Agents Colors:
-![Double Agents](./pictures/capitalist.png)
+![Double Agents](./palettes/capitalist.png)
 
 | HEX     | RGB                |
 |---------|--------------------|
