@@ -72,7 +72,7 @@ class Game {
         this.state = state;
         this.observer.emit("state")
     }
-
+    
     startVote() {
         airconsole.broadcast({ event: EVENT_VOTE_START, players: this.getPlayers() })
     }

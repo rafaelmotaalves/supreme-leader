@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +13,25 @@
     <script type="text/javascript" src="./shared/observer.js"></script>
     <script type="text/javascript" src="./shared/util.js"></script>
     <script type="text/javascript" src="./shared/events.js"></script>
-    <script type="text/javascript" src="./screen/states/register.js"></script>
-    <script type="text/javascript" src="./screen/states/start.js"></script>
-    <script type="text/javascript" src="./screen/states/vote.js"></script>
-    <script type="text/javascript" src="./screen/states/results.js"></script>
+    <script type="text/javascript" src="./screen/states/register/register.js"></script>
+    <script type="text/javascript" src="./screen/states/results/results.js"></script>
+    <script type="text/javascript" src="./screen/states/start/start.js"></script>
+    <script type="text/javascript" src="./screen/states/vote/vote.js"></script>
     <script type="text/javascript" src="./screen/game.js"></script>
     <script type="text/javascript" src="./screen/main.js"></script>
     <title>Supreme Leader</title>
 </head>
 <body>
     <h1 id="counter"></h1>
+    <div id ="content"></div>
     <div class="state" id="state_register">
-        <h1 id="title">Waiting for players</h1>
+        <h1 id="waiting_title">Waiting for players</h1>
     </div>
     <div class="state" id="state_start" hidden=true>
         <h1 id="title">Players</h1>
     </div>
     <div class="state" id="state_vote" hidden=true>
-        <h1 id="title">Vote</h1>
+        <h1 id="voting_title">Vote</h1>
     </div>
     <div class="state" id="state_results" hidden=true>
         <h1>Election ended</h1>

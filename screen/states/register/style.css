@@ -1,0 +1,36 @@
+body {
+    background-color: #5e0808;
+    color: #fadc94;
+    font-family: 'Russo One', sans-serif;
+    text-shadow:
+    3px  3px 0 #000,
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
+}
+.center{
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 10%;
+}
+
+h1 {
+    font-size: 5vw;
+    margin: auto;
+}
+.star {
+    margin: auto;
+    margin-top: 3vw;
+    top:0;
+    left:0;
+    width:5vw;
+    height:5vw;
+    animation:rotate 5s infinite linear;
+    background:url('../../../assets/star.svg');
+}
+
+@keyframes rotate {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
