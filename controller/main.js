@@ -29,7 +29,7 @@ window.addEventListener("load", function() {
         if (player.impostor) {
             roleElem.innerHTML = "You are a Double Agent."
         } else {
-            roleElem.innerHTML = "You are a member of the Party."
+            roleElem.innerHTML = "You are a Member of the Party."
         }
     })
 
@@ -40,7 +40,8 @@ window.addEventListener("load", function() {
         player.getPlayers().forEach(p => {
             const container = document.createElement("div")
             const button = document.createElement("button")
-
+            button.classList.add('voting_button')
+            
             container.appendChild(button)
 
             button.onclick = () => {
