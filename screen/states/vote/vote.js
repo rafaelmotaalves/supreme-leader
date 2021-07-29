@@ -21,7 +21,7 @@ class StateVote {
             this.votes[data.player] += 1;
         }
 
-        if ([...this.voters].length === this.game.getPlayers().length) {
+        if ([...this.voters].length === this.game.getActivePlayers().length) {
             const nextState = this.nextState();
 
             this.game.setState(nextState);

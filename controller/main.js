@@ -19,9 +19,13 @@ window.addEventListener("load", function() {
         player.setName(name)
     })
     
+    document.getElementById("skip_button").addEventListener("click", function(e) {
+        player.handleClickPlayer(null);
+    });
+
     player.observer.listen("state", function() {
         hideAllStates()
-        document.getElementById(player.state.name).hidden = false
+        showState(player.state.name)
     })
 
     player.observer.listen("impostor", function() {
@@ -38,14 +42,19 @@ window.addEventListener("load", function() {
         playerList.innerHTML = ""
     
         player.getPlayers().forEach(p => {
+            if (player.state instanceof StateLeader && p.id == player.getId()) {
+                return
+            }
+
             const container = document.createElement("div")
             const button = document.createElement("button")
             button.classList.add('voting_button')
             
             container.appendChild(button)
+            
 
             button.onclick = () => {
-                player.votePlayer(p)
+                player.handleClickPlayer(p)
             }
     
             button.innerHTML += p.name

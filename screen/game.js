@@ -7,12 +7,12 @@ class Game {
     }
 
     handleEvent(from, data) {
-        console.log(from, data)
+        console.log(from, data, this.state)
         this.state.handleEvent(from, data)
     }
 
     setLeader(leaderId) {
-        this.leader = this.players[leaderId]
+        this.leader = leaderId
         this.observer.emit("leader")
     }
 
@@ -33,6 +33,10 @@ class Game {
                 id
             }
         })
+    }
+
+    getActivePlayers() {
+        return this.getPlayers().filter(player => !player.killed)
     }
     
     getNumberOfImpostors() {
@@ -56,6 +60,20 @@ class Game {
         })
     }
 
+    exilePlayer(playerId) {
+        if (playerId) {
+            this.players[playerId].killed = true;
+            this.observer.emit("players")
+        }
+        airconsole.broadcast({ event: EVENT_VOTE_EXILE_END, player: playerId })
+        this.setState(new StateStart(this));
+        this.leader = null;
+    }
+
+    startVoteExile() {
+        airconsole.message(this.leader, { event: EVENT_VOTE_EXILE_START, players: this.getActivePlayers() })
+    }
+
     startGame() {
         this.setState(new StateStart(this))
         this.allocatePlayers()
@@ -74,7 +92,7 @@ class Game {
     }
     
     startVote() {
-        airconsole.broadcast({ event: EVENT_VOTE_START, players: this.getPlayers() })
+        airconsole.broadcast({ event: EVENT_VOTE_START, players: this.getActivePlayers() })
     }
 
     update() {

@@ -9,6 +9,14 @@ class StateResults {
 
     getDuration = () => 5
 
-    nextState = () => new StateStart(this.game);
+    nextState = () => {
+        if (this.game.leader) {
+            this.game.startVoteExile();
+            
+            return new StateLeader(this.game) 
+        } else {
+            return new StateStart(this.game)
+        }
+    };
 
 }

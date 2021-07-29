@@ -30,7 +30,9 @@ game.observer.listen("players", () => {
 
     game.getPlayers().forEach(player => {
         const h3 = document.createElement("h3")
-
+        if (player.killed) {
+            h3.classList.add("dead")
+        }
         h3.innerHTML += player.name
         playerList.appendChild(h3)
     })
@@ -43,8 +45,10 @@ game.observer.listen("state", function() {
 
 game.observer.listen("leader", function() {
     const leaderElem = document.getElementById("leader")
+
     if (game.leader) {
-        leaderElem.innerHTML = game.leader.name + " is the new Supreme Leader"
+        const leader = game.players[game.leader]
+        leaderElem.innerHTML = leader.name + " is the new Supreme Leader"
     } else {
         leaderElem.innerHTML = "The election tied, no leader was elected this round."
     }

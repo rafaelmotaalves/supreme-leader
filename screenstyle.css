@@ -17,8 +17,11 @@ body {
     margin: auto;
 }
 
-
 #voting_title {
     font-size: 5vw;
     margin: auto;
+}
+
+.dead {
+    text-decoration: line-through;
 }
