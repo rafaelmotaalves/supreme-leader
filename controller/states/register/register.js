@@ -1,7 +1,7 @@
 class StateRegister {
 
     constructor() {
-        this.name = "state_register"
+        this.path = "controller/states/register/register.html"
     }
     
     handleEvent() {}

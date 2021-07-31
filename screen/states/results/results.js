@@ -2,7 +2,7 @@ class StateResults {
 
     constructor(game) {
         this.game = game;
-        this.name = "state_results"
+        this.path = "screen/states/results/results.html"
     }
 
     handleEvent() {}

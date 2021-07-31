@@ -1,8 +1,8 @@
 class StateStart {
 
     constructor(player) {
-        this.name = "state_start"
         this.player = player;
+        this.path = "controller/states/start/start.html"
     }
 
     handleEvent(from, data) {

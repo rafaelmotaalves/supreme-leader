@@ -1,46 +1,80 @@
 const airconsole = new AirConsole()
 
-const player = new Player()
 
-window.addEventListener("load", function() {
+window.addEventListener("load", async function() {
+    const player = new Player()
+    const content = document.getElementById("content")
+    content.innerHTML = await fetchHtmlAsText(player.state.path)
+
+    loadPlayers()
+    loadImpostor()
+    loadRegisterPlayerForm()
+    loadSkipButton()
 
     airconsole.onMessage = function (from, data) {
         player.handleEvent(from, data)
     }
 
-    document.getElementById("register_player_form").addEventListener("submit", function(e) {
-        e.preventDefault()
-
-        const inputName = document.getElementById("input_name")
-        const name = inputName.value
-        
-        inputName.value = ""
-        airconsole.message(AirConsole.SCREEN, { event: "register_player", name })
-        player.setName(name)
+    player.observer.listen("state", async function() {
+        content.innerHTML = await fetchHtmlAsText(player.state.path)
+        loadPlayers()
+        loadImpostor()
+        loadRegisterPlayerForm()
+        loadSkipButton()
     })
+
+    function loadRegisterPlayerForm() {
+        const registerPlayerForm = document.getElementById("register_player_form")
+
+        if (!registerPlayerForm) {
+            return
+        }
+
+        registerPlayerForm.addEventListener("submit", function(e) {
+            e.preventDefault()
     
-    document.getElementById("skip_button").addEventListener("click", function(e) {
-        player.handleClickPlayer(null);
-    });
+            const inputName = document.getElementById("input_name")
+            const name = inputName.value
+            
+            inputName.value = ""
+            airconsole.message(AirConsole.SCREEN, { event: "register_player", name })
+            player.setName(name)
+        })
+    }
 
-    player.observer.listen("state", function() {
-        hideAllStates()
-        showState(player.state.name)
-    })
+    function loadSkipButton() {
+        const skipButton = document.getElementById("skip_button")
 
-    player.observer.listen("impostor", function() {
+        if (!skipButton) {
+            return
+        }
+
+        skipButton.addEventListener("click", function(e) {
+            player.handleClickPlayer(null);
+        });
+    }
+
+    function loadImpostor() {
         const roleElem = document.getElementById("role")
+
+        if (!roleElem) {
+            return
+        }
+
         if (player.impostor) {
             roleElem.innerHTML = "You are a Double Agent."
         } else {
             roleElem.innerHTML = "You are a Member of the Party."
         }
-    })
+    }
 
-    player.observer.listen("players", function() {
+    function loadPlayers() {
         const playerList = document.getElementById("players")
+
+        if (!playerList) {
+            return
+        }
         playerList.innerHTML = ""
-    
         player.getPlayers().forEach(p => {
             if (player.state instanceof StateLeader && p.id == player.getId()) {
                 return
@@ -60,6 +94,6 @@ window.addEventListener("load", function() {
             button.innerHTML += p.name
             playerList.appendChild(container)
         })
-    })
+    }
 
 })

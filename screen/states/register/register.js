@@ -1,7 +1,7 @@
 class StateRegister {
     constructor(game) {
         this.game = game
-        this.name = "state_register"
+        this.path = "screen/states/register/register.html"
     }
 
     handleEvent(from, data) {

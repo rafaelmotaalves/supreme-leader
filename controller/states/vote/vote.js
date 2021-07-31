@@ -1,8 +1,8 @@
 class StateVote {
 
     constructor(player) {
-        this.name = "state_vote"
         this.player = player
+        this.path = "controller/states/vote/vote.html"
     }
 
     handleEvent(from, data) {

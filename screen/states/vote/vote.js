@@ -1,10 +1,10 @@
 class StateVote {
 
     constructor(game) {
-        this.name = "state_vote"
         this.game = game
         this.votes = {};
         this.voters = new Set();
+        this.path = "screen/states/vote/vote.html"
     }
 
     handleEvent(from, data) {

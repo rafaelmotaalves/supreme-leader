@@ -1,6 +1,6 @@
 class StateDead {
     constructor() {
-        this.name = "state_dead"
+        this.path = "controller/states/dead/dead.html"
     }
 
     handleEvent() {}

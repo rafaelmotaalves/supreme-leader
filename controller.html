@@ -13,44 +13,19 @@
     <script type="text/javascript" src="./shared/observer.js"></script>
     <script type="text/javascript" src="./shared/util.js"></script>
     <script type="text/javascript" src="./shared/events.js"></script>
-    <script type="text/javascript" src="./controller/states/register.js"></script>
-    <script type="text/javascript" src="./controller/states/waiting.js"></script>
-    <script type="text/javascript" src="./controller/states/start.js"></script>
-    <script type="text/javascript" src="./controller/states/vote.js"></script>
-    <script type="text/javascript" src="./controller/states/leader.js"></script>
-    <script type="text/javascript" src="./controller/states/dead.js"></script>
+    <script type="text/javascript" src="./controller/states/register/register.js"></script>
+    <script type="text/javascript" src="./controller/states/waiting/waiting.js"></script>
+    <script type="text/javascript" src="./controller/states/start/start.js"></script>
+    <script type="text/javascript" src="./controller/states/vote/vote.js"></script>
+    <script type="text/javascript" src="./controller/states/leader/leader.js"></script>
+    <script type="text/javascript" src="./controller/states/dead/dead.js"></script>
     <script type="text/javascript" src="./controller/player.js"></script>
     <script type="text/javascript" src="./controller/main.js"></script>
     <title>Supreme Leader</title>
 </head>
 
 <body>
-    <div class="state state_register" id="state_register">
-        Nick Name
-        <form id="register_player_form" style="margin-top:5px;">
-            <input type="text" id="input_name" name="name" />
-        </form>
-        <button form="register_player_form" class="submit_button" type="submit">Submit</button>
-    </div>    
-    <div class="state state_waiting" id="state_waiting" hidden=true> 
-        <h1>Waiting for other players</h1>
-    </div>
-    <div class="state state_start" id="state_start" hidden=true>
-        <h1 id="role"></h1>
-        <h1>Game started</h1>
-    </div>
-    <div class="state state_vote" id="state_vote" hidden=true>
-        <h1>Voting started</h1>
-    </div>
-    <div class="state state_leader" id="state_leader" hidden=true>
-        <h1>You are the supreme Leader</h1>
-    </div>
-    <div class="state state_leader state_vote" id="players" hidden=true>
-    </div>
-    <button class="state state_leader voting_button" hidden=true id="skip_button">skip</button>
-    <div class="state state_dead" id="state_dead" hidden=true>
-        <h1>You are in the gulag</h1>
-    </div>
+    <div id="content"></div>
 </body>
 
 </html>

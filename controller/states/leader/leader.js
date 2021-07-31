@@ -1,7 +1,7 @@
 class StateLeader {
     constructor(player) {
         this.player = player;
-        this.name = "state_leader";
+        this.path = "controller/states/leader/leader.html"
     }
 
     handleEvent(from, data) {

@@ -1,8 +1,8 @@
 class StateWaiting {
 
     constructor(player) {
-        this.name = "state_waiting"
         this.player = player
+        this.path = "controller/states/waiting/waiting.html"
     }
 
     handleEvent(from, data) {

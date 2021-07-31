@@ -1,7 +1,7 @@
 class StateLeader {
     constructor(game) {
         this.game = game;
-        this.name = "state_leader"
+        this.path = "screen/states/leader/leader.html"
     }
 
     handleEvent(from, data) {
