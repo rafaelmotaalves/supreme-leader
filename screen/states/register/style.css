@@ -1,4 +1,7 @@
 body {
+    background-image: url(../../../assets/bg03.png);
+    background-size: cover;
+    background-blend-mode: multiply;
     background-color: #5e0808;
     color: #fadc94;
     font-family: 'Russo One', sans-serif;

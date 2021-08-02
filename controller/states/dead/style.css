@@ -10,7 +10,7 @@ body {
     vertical-align: middle;
     color: #c4c4c4;
     font-family: 'Russo One', sans-serif;
-    font-size: 6vh;
+    font-size: 10vw;
     text-shadow:
     3px  3px 0 #000,
    -1px -1px 0 #000,
@@ -18,7 +18,16 @@ body {
    -1px  1px 0 #000,
     1px  1px 0 #000;
 }
-
+img{
+    height: 25%;
+    color: #c4c4c4;
+    animation:blink 7s infinite linear;
+}
 div {
     height: 100%;
+}
+
+@keyframes blink {
+    0%, 45%, 50%, 95%,  98% {opacity:0%}
+    46%, 96%, 99%, 100% {opacity:50%} 
 }
