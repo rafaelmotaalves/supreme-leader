@@ -1,4 +1,4 @@
-const airconsole = new AirConsole()
+const airconsole = new AirConsole({"orientation": "portrait","setup_document":false})
 
 
 window.addEventListener("load", async function() {

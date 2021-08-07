@@ -16,7 +16,13 @@ body {
    -1px  1px 0 #000,
     1px  1px 0 #000;
 }
+#players {
+    column-count: 2;
+    column-gap: 2px;
+}
 .voting_button {
+    overflow: hidden;
+    text-overflow: ellipsis;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -40,6 +46,34 @@ body {
 	background-color:#524834;
 }
 .votingd_button:active {
+	position:relative;
+	top:1px;
+}
+
+#skip_button {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-top: 5px;
+	box-shadow:inset 0px 34px 0px -15px #ffffff;
+	background-color:#ccccd6;
+	border:1px solid #000000;
+	color:#FFFFFF;
+	font-family:'Russo One', sans-serif;
+	font-size:5vh;
+	font-weight:bold;
+	padding:8px 13px;
+    text-shadow:
+    3px  3px 0 #000,
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
+	}
+#skip_button:hover {
+	background-color:#666684;
+}
+#skip_button:active {
 	position:relative;
 	top:1px;
 }
