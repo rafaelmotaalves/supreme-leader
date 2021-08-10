@@ -95,10 +95,25 @@ class Game {
         airconsole.broadcast({ event: EVENT_VOTE_START, players: this.getActivePlayers() })
     }
 
+    startVote(winners) {
+        airconsole.broadcast({ event: EVENT_GAME_ENDED, winners: winners })
+    }
+
     update() {
         if (this.endState !== null && new Date() > this.endState) {
             const nextState = this.state.nextState();
             this.setState(nextState);
+        }
+    }
+
+    checkEndgame() {
+        const impostorsAlive = this.getActivePlayers().filter(player => player.impostor).length;
+        const notImpostorsAlive = this.getActivePlayers().filter(player => !player.impostor).length;
+
+        if (impostorsAlive >= notImpostorsAlive) {
+            return "impostors";
+        } else if (impostorsAlive == 0) {
+            return "party";
         }
     }
 }
