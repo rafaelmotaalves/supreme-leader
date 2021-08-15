@@ -10,6 +10,7 @@ window.addEventListener("load", async function() {
     loadImpostor()
     loadRegisterPlayerForm()
     loadSkipButton()
+    loadEndGame()
 
     airconsole.onMessage = function (from, data) {
         player.handleEvent(from, data)
@@ -21,6 +22,7 @@ window.addEventListener("load", async function() {
         loadImpostor()
         loadRegisterPlayerForm()
         loadSkipButton()
+        loadEndGame()
     })
 
     function loadRegisterPlayerForm() {
@@ -65,6 +67,28 @@ window.addEventListener("load", async function() {
             roleElem.innerHTML = "You are a Double Agent."
         } else {
             roleElem.innerHTML = "You are a Member of the Party."
+        }
+    }
+
+    function loadEndGame() {
+        const resultElem = document.getElementById("result")
+
+        if (!resultElem) {
+            return
+        }
+
+        if (player.impostor) {
+            if(player.defeat){
+                resultElem.innerHTML = "You Win! The Party is gone!"
+            } else {
+                resultElem.innerHTML = "You Lose! The Party is watching everyone!"
+            }
+        } else {
+            if(player.defeat){
+                resultElem.innerHTML = "You Lose! Shame on you!"
+            } else {
+                resultElem.innerHTML = "You Win! All Glory to the Party!"
+            }
         }
     }
 

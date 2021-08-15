@@ -12,6 +12,10 @@ class StateWaiting {
             return;
         }
 
+        console.log("EVENT RECEIVED: ")
+        console.log(event)
+        console.log(data.event)
+
         if (event === EVENT_PLAYER_ROLE) {
             this.player.setImpostor(data.impostor)
         } else if (event === EVENT_VOTE_END) {
@@ -23,7 +27,7 @@ class StateWaiting {
         } else if (data.event == EVENT_VOTE_START) {
             this.player.startVote(data.players);
         } else if (data.event == EVENT_GAME_ENDED) {
-            this.player.endGame(data.winners)
+            this.player.endGame(data.winners, data.defeat);
         }
     }
 }

@@ -33,6 +33,7 @@ window.addEventListener("load", async function () {
         content.innerHTML = await fetchHtmlAsText(game.state.path)
         loadPlayers()
         loadLeader()
+        loadWinners()
     })
 
     function loadPlayers() {
@@ -66,6 +67,17 @@ window.addEventListener("load", async function () {
         } else {
             leaderElem.innerHTML = "The election tied, no leader was elected this round."
         }
+    }
+
+    function loadWinners() {
+        const winnerElem = document.getElementById("winners")
+        
+        if (!winnerElem) {
+            return
+        }
+
+        const winners = game.winners
+        winnerElem.innerHTML = winners + " won this time!"
     }
 })
 
