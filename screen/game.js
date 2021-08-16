@@ -1,7 +1,9 @@
 class Game {
     constructor() {
         this.players = {}
+        this.winners = null
         this.leader = null
+        this.defeat = false
         this.observer = new Observer()
         this.setState(new StateRegister(this))
     }
@@ -14,6 +16,12 @@ class Game {
     setLeader(leaderId) {
         this.leader = leaderId
         this.observer.emit("leader")
+    }
+
+    setWinner(winners, defeat) {
+        this.winners = winners
+        this.defeat = defeat
+        //this.observer.emit("winner")
     }
 
     addPlayer(id, name) {
@@ -37,6 +45,10 @@ class Game {
 
     getActivePlayers() {
         return this.getPlayers().filter(player => !player.killed)
+    }
+
+    getWinner(){
+        return this.winner
     }
     
     getNumberOfImpostors() {
@@ -95,10 +107,38 @@ class Game {
         airconsole.broadcast({ event: EVENT_VOTE_START, players: this.getActivePlayers() })
     }
 
+    endGame() {
+        airconsole.broadcast({ event: EVENT_GAME_ENDED, winners: this.getWinner(), defeat: this.defeat })
+    }
+
+    restartGame(){
+        this.players = {}
+        this.winners = null
+        this.leader = null
+        this.defeat = false
+        this.setState(new StateRegister(this))
+        airconsole.broadcast({ event: EVENT_START_REGISTER})
+    }
+
     update() {
         if (this.endState !== null && new Date() > this.endState) {
             const nextState = this.state.nextState();
             this.setState(nextState);
+        }
+    }
+
+    checkEndgame() {
+        const impostorsAlive = this.getActivePlayers().filter(player => player.impostor).length;
+        const notImpostorsAlive = this.getActivePlayers().filter(player => !player.impostor).length;
+
+        if (impostorsAlive >= notImpostorsAlive) {
+            this.setWinner("Double Agents", true)
+            return true;
+        } else if (impostorsAlive == 0) {
+            this.setWinner("Party Members", false)
+            return true;
+        } else {
+            return false
         }
     }
 }

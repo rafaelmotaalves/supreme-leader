@@ -1,0 +1,36 @@
+body {
+    background-image: url(../../../assets/bg03.png);
+    text-align: center;
+    vertical-align: middle;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: #5e0808;
+    color: #fadc94;
+    font-family: 'Russo One', sans-serif;
+    text-shadow:
+    3px  3px 0 #000,
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
+}
+.center{
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 10%;
+}
+
+h1 {
+    font-size: 5vw;
+    margin: auto;
+}
+h3 {
+    font-size: 3vw;
+    margin: auto;
+    margin-top: 5px;
+}
+#players {
+    column-count: 2;
+    column-gap: 2px;
+    font-size: 3vw;
+}

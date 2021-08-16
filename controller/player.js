@@ -2,6 +2,8 @@
 class Player {
     constructor() {
         this.state = new StateRegister()
+        this.winners = null
+        this.defeat = false
         this.observer = new Observer()
         this.name = ""
         this.impostor = false;
@@ -53,15 +55,31 @@ class Player {
         this.wait()
     }
 
+    endGame(winners, defeat){
+        this.winners = winners;
+        this.defeat = defeat;
+        this.setState(new StateEndgame(this));
+    }
+
     startVoteExile(players) {
         this.setState(new StateLeader(this))
         this.setPlayers(players)
     }
 
+    restartPlayer(){
+        console.log("RESTARTING PLAYER " + this.name)
+        this.winners = null
+        this.defeat = false
+        this.name = ""
+        this.impostor = false;
+        this.players = [];
+        this.setState(new StateRegister())
+    }
+
     endExileVote(target) {
         console.log(airconsole.getDeviceId(), target)
         if (this.getId() == target) {
-            this.setState(new StateDead())
+            this.setState(new StateDead(this))
         } else {
             this.start();
         }
@@ -81,7 +99,6 @@ class Player {
     }
 
     handleEvent(from, data) {
-        console.log(from, data)
         this.state.handleEvent(from, data)
     }
     
