@@ -73,7 +73,7 @@ class Player {
         this.name = ""
         this.impostor = false;
         this.players = [];
-        this.setState = (new StateRegister())
+        this.setState(new StateRegister())
     }
 
     endExileVote(target) {
