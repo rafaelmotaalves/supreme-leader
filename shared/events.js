@@ -2,6 +2,7 @@
 const EVENT_REGISTER_PLAYER = "register_player"
 const EVENT_VOTE_LEADER = "vote_leader"
 const EVENT_VOTE_EXILE = "vote_exile"
+const EVENT_SABOTAGE = "sabotage"
 
 
 // screen events

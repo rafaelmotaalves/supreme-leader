@@ -47,6 +47,10 @@ class Game {
         return this.getPlayers().filter(player => !player.killed)
     }
 
+    getActiveImpostors() {
+        return this.getActivePlayers().filter(player => player.impostor)
+    }
+
     getWinner(){
         return this.winner
     }

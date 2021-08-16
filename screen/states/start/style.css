@@ -20,6 +20,10 @@ body {
     margin-top: 10%;
 }
 
+.dead {
+    text-decoration: line-through;
+}
+
 h1 {
     font-size: 5vw;
     margin: auto;

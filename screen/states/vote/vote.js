@@ -4,11 +4,15 @@ class StateVote {
         this.game = game
         this.votes = {};
         this.voters = new Set();
+        this.impostors = new Set();
         this.path = "screen/states/vote/vote.html"
     }
 
     handleEvent(from, data) {
-        if (this.voters.has(from)) {
+
+        console.log("VOTE RECEIVED FROM: " + from)
+        
+        if (this.voters.has(from) && this.impostors.has(from)) {
             return;
         }
 
@@ -21,7 +25,11 @@ class StateVote {
             this.votes[data.player] += 1;
         }
 
-        if ([...this.voters].length === this.game.getActivePlayers().length) {
+        if (data.event === EVENT_SABOTAGE) {
+            this.impostors.add(from);
+        }
+
+        if (([...this.voters].length + [...this.impostors].length) === (this.game.getActivePlayers().length + this.game.getActiveImpostors().length)) {
             const nextState = this.nextState();
 
             this.game.setState(nextState);

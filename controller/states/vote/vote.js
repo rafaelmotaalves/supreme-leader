@@ -7,7 +7,7 @@ class StateVote {
 
     handleEvent(from, data) {
         if (from === AirConsole.SCREEN && data.event === EVENT_VOTE_END) {
-            this.player.endVote(data)
+            this.player.endVote()
         }
     }
 }
