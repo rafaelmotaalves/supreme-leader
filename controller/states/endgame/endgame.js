@@ -5,14 +5,20 @@ class StateEndgame {
         this.path = "controller/states/endgame/endgame.html"
     }
 
-    handleEvent() {}
+    handleEvent(from, data) {
+        const { event } = data;
 
-    // the max time in seconds the state should run for
-    getDuration = () => 60;
+        if (from !== AirConsole.SCREEN) {
+            return;
+        }
 
-    // called when the current state time ends, should return the next state
-    nextState() { 
-        // this.player.wait();
-        return new StateRegister();
+        console.log("EVENT RECEIVED: ")
+        console.log(event)
+        console.log(data.event)
+
+        if (event === EVENT_START_REGISTER) {
+            //this.player = new Player()
+            this.player.restartPlayer()
+        } 
     }
 }

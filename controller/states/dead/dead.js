@@ -6,7 +6,7 @@ class StateDead {
 
     handleEvent(from, data) {
         if (from == AirConsole.SCREEN && data.event == EVENT_GAME_ENDED) {
-            this.player.endGame(data.winners);
+            this.player.endGame(data.winners, data.defeat);
         }
     }
 }

@@ -12,7 +12,6 @@ class StateEndgame {
 
     // called when the current state time ends, should return the next state
     nextState() { 
-        this.game = new Game();
-        return new StateRegister(this.game);
+        this.game.restartGame();
     }
 }

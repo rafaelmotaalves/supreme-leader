@@ -21,7 +21,7 @@ class Game {
     setWinner(winners, defeat) {
         this.winners = winners
         this.defeat = defeat
-        this.observer.emit("winner")
+        //this.observer.emit("winner")
     }
 
     addPlayer(id, name) {
@@ -108,7 +108,16 @@ class Game {
     }
 
     endGame() {
-        airconsole.broadcast({ event: EVENT_GAME_ENDED, winners: this.getWinner() })
+        airconsole.broadcast({ event: EVENT_GAME_ENDED, winners: this.getWinner(), defeat: this.defeat })
+    }
+
+    restartGame(){
+        this.players = {}
+        this.winners = null
+        this.leader = null
+        this.defeat = false
+        this.setState(new StateRegister(this))
+        airconsole.broadcast({ event: EVENT_START_REGISTER})
     }
 
     update() {

@@ -1,5 +1,6 @@
 class StateStart {
     constructor(game) {
+        this.name = 
         this.game = game;
         this.path = "screen/states/start/start.html"
     }

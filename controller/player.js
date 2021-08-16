@@ -66,6 +66,16 @@ class Player {
         this.setPlayers(players)
     }
 
+    restartPlayer(){
+        console.log("RESTARTING PLAYER " + this.name)
+        this.winners = null
+        this.defeat = false
+        this.name = ""
+        this.impostor = false;
+        this.players = [];
+        this.setState = (new StateRegister())
+    }
+
     endExileVote(target) {
         console.log(airconsole.getDeviceId(), target)
         if (this.getId() == target) {
@@ -89,8 +99,6 @@ class Player {
     }
 
     handleEvent(from, data) {
-        console.log("EVENT HANDLED:")
-        console.log(from, data)
         this.state.handleEvent(from, data)
     }
     

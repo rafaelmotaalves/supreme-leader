@@ -3,6 +3,7 @@ class StateWaiting {
     constructor(player) {
         this.player = player
         this.path = "controller/states/waiting/waiting.html"
+        this.name = "WAITING"
     }
 
     handleEvent(from, data) {
@@ -12,9 +13,8 @@ class StateWaiting {
             return;
         }
 
-        console.log("EVENT RECEIVED: ")
+        console.log("EVENT RECEIVED BY WAITING: ")
         console.log(event)
-        console.log(data.event)
 
         if (event === EVENT_PLAYER_ROLE) {
             this.player.setImpostor(data.impostor)
@@ -22,12 +22,10 @@ class StateWaiting {
             this.player.endVote(data.winner)
         } else if (event === EVENT_VOTE_EXILE_END) {
             this.player.endExileVote(data.player)
-        } else if (event == EVENT_VOTE_EXILE_START) {
+        } else if (event === EVENT_VOTE_EXILE_START) {
             this.player.startVoteExile(data.players)
-        } else if (data.event == EVENT_VOTE_START) {
+        } else if (event === EVENT_VOTE_START) {
             this.player.startVote(data.players);
-        } else if (data.event == EVENT_GAME_ENDED) {
-            this.player.endGame(data.winners, data.defeat);
         }
     }
 }
