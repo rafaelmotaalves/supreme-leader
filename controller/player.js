@@ -10,6 +10,12 @@ class Player {
         this.players = [];
     }
 
+    register(name) {
+        airconsole.message(AirConsole.SCREEN, { event: EVENT_REGISTER_PLAYER, name })
+        
+        this.setName(name)
+    }
+
     getPlayers() {
         return this.players;
     }   

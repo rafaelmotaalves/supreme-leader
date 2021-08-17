@@ -38,9 +38,10 @@ window.addEventListener("load", async function() {
             const inputName = document.getElementById("input_name")
             const name = inputName.value
             
-            inputName.value = ""
-            airconsole.message(AirConsole.SCREEN, { event: "register_player", name })
-            player.setName(name)
+            if (name.length > 0) {
+                inputName.value = ""
+                player.register(name)
+            }
         })
     }
 
