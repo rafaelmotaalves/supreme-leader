@@ -24,8 +24,24 @@ class Player {
         airconsole.message(AirConsole.SCREEN, { event: EVENT_VOTE_EXILE, player: player ? player.id : null });
     }
 
+    successSabotage(leader){
+        min = Math.ceil(0);
+        max = Math.floor(100);
+        if(leader){
+            return ((Math.floor(Math.random() * (max - min)) + min) <= 80);
+        }
+        return ((Math.floor(Math.random() * (max - min)) + min) <= 50);
+    }
+
     sabotagePlayer(player) {
-        airconsole.message(AirConsole.SCREEN, { event: EVENT_SABOTAGE, player: player ? player.id : null });
+        var success = false;
+        if (player.name != this.name){
+            success = this.successSabotage(false)
+        }
+        // The Success var aims to change the message on the Results screen
+        // Success = true means that the player must be declared as dead
+        // Success = false means that the sabotage attempt was made to that player but the player it's alive
+        airconsole.message(AirConsole.SCREEN, { event: EVENT_SABOTAGE, player: player ? player.id : null, success: success });
         this.wait()
     }
 
