@@ -29,12 +29,33 @@ window.addEventListener("load", async function () {
     }, 1000 / 2)
 
     game.observer.listen("state", async function () {
-        console.log(game.state)
         content.innerHTML = await fetchHtmlAsText(game.state.path)
         loadPlayers()
         loadLeader()
         loadWinners()
+        loadSabotages()
     })
+
+    function loadSabotages() {
+        const sabotageList = document.getElementById("sabotages")
+
+        if (!sabotageList) {
+            return
+        }
+        sabotageList.innerHTML = ""
+
+        game.lastSabotages.forEach(sabotage => {
+            const sabotageElement = document.createElement("h2")
+            
+            const targetPlayer = game.getPlayer(sabotage.player)
+            if (sabotage.success) {
+                sabotageElement.innerText = `${targetPlayer.name} was killed`
+            } else {
+                sabotageElement.innerText = `${targetPlayer.name} was attacked and survived`
+            }
+            sabotageList.appendChild(sabotageElement)
+        }) 
+    }
 
     function loadPlayers() {
         const playerList = document.getElementById("players")

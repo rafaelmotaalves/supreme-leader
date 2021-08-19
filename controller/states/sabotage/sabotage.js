@@ -6,7 +6,7 @@ class StateSabotage {
     }
 
     handleEvent(from, data) {
-        if (from === AirConsole.SCREEN && data.event === EVENT_SABOTAGE) {
+        if (from === AirConsole.SCREEN && data.event === EVENT_VOTE_END) {
             this.player.endSabotage(data)
         }
     }

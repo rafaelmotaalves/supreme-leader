@@ -3,6 +3,7 @@ class Game {
         this.players = {}
         this.winners = null
         this.leader = null
+        this.lastSabotages = []
         this.defeat = false
         this.observer = new Observer()
         this.setState(new StateRegister(this))
@@ -18,10 +19,28 @@ class Game {
         this.observer.emit("leader")
     }
 
+    registerSabotages(sabotages) {
+        const s = {}
+        
+        sabotages.forEach(sabotage => {
+            const { player, success } = sabotage
+
+            if (!s[player] || !s[player].killed) {
+                if (success) {
+                    this.getPlayer(player).killed = true;
+                    airconsole.message(player, { event: KILL_PLAYER });
+                }
+                s[player] = sabotage
+            }
+        });      
+
+        this.lastSabotages = Object.values(s)
+        this.observer.emit("sabotages")
+    }
+
     setWinner(winners, defeat) {
         this.winners = winners
         this.defeat = defeat
-        //this.observer.emit("winner")
     }
 
     addPlayer(id, name) {
@@ -43,6 +62,10 @@ class Game {
         })
     }
 
+    getPlayer(id) {
+        return this.players[id]
+    }
+
     getActivePlayers() {
         return this.getPlayers().filter(player => !player.killed)
     }
@@ -56,7 +79,7 @@ class Game {
     }
     
     getNumberOfImpostors() {
-        return 1;
+        return 2;
     }
 
     allocatePlayers() {

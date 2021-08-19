@@ -26,6 +26,10 @@ class StateWaiting {
             this.player.startVoteExile(data.players)
         } else if (event === EVENT_VOTE_START) {
             this.player.startVote(data.players);
+        } else if (event == KILL_PLAYER) {
+            this.player.killPlayer();
+        } else if (from == AirConsole.SCREEN && data.event == EVENT_GAME_ENDED) {
+            this.player.endGame(data.winners, data.defeat);
         }
     }
 }
