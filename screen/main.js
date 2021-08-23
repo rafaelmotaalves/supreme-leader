@@ -51,7 +51,7 @@ window.addEventListener("load", async function () {
             if (sabotage.success) {
                 sabotageElement.innerText = `${targetPlayer.name} was killed`
             } else {
-                sabotageElement.innerText = `${targetPlayer.name} was attacked and survived`
+                sabotageElement.innerText = `${targetPlayer.name} was attacked but survived`
             }
             sabotageList.appendChild(sabotageElement)
         }) 
