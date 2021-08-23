@@ -73,7 +73,6 @@ window.addEventListener("load", async function() {
 
     function loadEndGame() {
         const resultElem = document.getElementById("result")
-        console.log("PLAYER: " + player.name + " DEFEAT: " + player.defeat)
 
         if (!resultElem) {
             return
@@ -112,7 +111,7 @@ window.addEventListener("load", async function() {
             
             container.appendChild(button)
             
-
+            console.log("")
             button.onclick = () => {
                 player.handleClickPlayer(p)
             }

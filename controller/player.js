@@ -23,12 +23,23 @@ class Player {
     votePlayer(player) {
         airconsole.message(AirConsole.SCREEN, { event: EVENT_VOTE_LEADER, player: player ? player.id : null });
         
-        this.wait();
+        if (this.impostor) {
+            this.setState(new StateSabotage(this))
+        } else {
+            this.endVote()
+        }
     }
 
     exilePlayer(player) {
         airconsole.message(AirConsole.SCREEN, { event: EVENT_VOTE_EXILE, player: player ? player.id : null });
     }
+
+
+    sabotagePlayer(player) {
+        airconsole.message(AirConsole.SCREEN, { event: EVENT_SABOTAGE, player: player ? player.id : null });
+        this.wait()
+    }
+
 
     setName(name) {
         this.name = name;
@@ -58,6 +69,10 @@ class Player {
     }
 
     endVote() {
+        this.wait()
+    }
+
+    endSabotage(){
         this.wait()
     }
 
@@ -101,6 +116,8 @@ class Player {
             this.votePlayer(player);
         } else if (this.state instanceof StateLeader) {
             this.exilePlayer(player);
+        } else if (this.state instanceof StateSabotage) {
+            this.sabotagePlayer(player);
         }
     }
 
@@ -114,5 +131,9 @@ class Player {
 
     start() {
         this.setState(new StateStart(this));
+    }
+
+    killPlayer() {
+        this.setState(new StateKilled(this));
     }
 }

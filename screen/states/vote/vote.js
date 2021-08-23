@@ -4,11 +4,13 @@ class StateVote {
         this.game = game
         this.votes = {};
         this.voters = new Set();
+        this.impostors = new Set();
+        this.sabotages = [];
         this.path = "screen/states/vote/vote.html"
     }
 
-    handleEvent(from, data) {
-        if (this.voters.has(from)) {
+    handleEvent(from, data) {        
+        if (this.voters.has(from) && this.impostors.has(from)) {
             return;
         }
 
@@ -21,7 +23,15 @@ class StateVote {
             this.votes[data.player] += 1;
         }
 
-        if ([...this.voters].length === this.game.getActivePlayers().length) {
+        if (data.event === EVENT_SABOTAGE) {
+            this.impostors.add(from);
+
+            this.sabotages.push(parseInt(data.player));
+        }
+
+        if (
+            [...this.voters].length + [...this.impostors].length === 
+            this.game.getActivePlayers().length + this.game.getActiveImpostors().length) {
             const nextState = this.nextState();
 
             this.game.setState(nextState);
@@ -41,6 +51,30 @@ class StateVote {
         else return null;
     }
 
+    getSabotages(){
+        const min = 0;
+        const max = 100;
+
+        return this.sabotages.map((target) => {
+            let success = false;
+            if (!this.game.players[target].impostor) {
+                const randomNumber = randomNumberBetween(min, max)
+
+                console.log(randomNumber)
+                if (target == this.game.leader) {
+                    console.log("leader")
+                    success = randomNumber <= 20;
+                } else {
+                    console.log("regular")
+                    success = randomNumber <= 50
+                }
+            };
+
+            return { player: target, success }
+        }) 
+    }
+
+
     // the max duration for the voting time
     getDuration = () => 60
 
@@ -48,11 +82,19 @@ class StateVote {
     // notificate the players and go to the next state
     nextState() { 
         const winner = this.getWinner();
-        
+
         airconsole.broadcast({ event: EVENT_VOTE_END, winner })
 
         this.game.setLeader(winner)
 
+        const sabotages = this.getSabotages();
+        this.game.registerSabotages(sabotages)
+
         return new StateResults(this.game)
     }
+}
+
+
+function randomNumberBetween(min, max) {
+    return (Math.floor(Math.random() * (max - min)) + min)
 }
