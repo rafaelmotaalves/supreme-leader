@@ -1,6 +1,6 @@
 # supreme-leader
 
-## Como executar
+## Para executar localmente
 
 Instale as dependências:
 
@@ -25,3 +25,10 @@ Pegue uma das urls retornadas e vá para o site:
 
 
 > Tem que usar a versão http do site do airconsole, com a https não vai funcionar
+
+
+## Para executar a versão publicada
+
+ Vá para o site:
+
+`http://www.airconsole.com/simulator/#https://rafaelmotaalves.github.io/supreme-leader`
