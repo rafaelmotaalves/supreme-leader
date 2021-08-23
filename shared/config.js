@@ -1,0 +1,7 @@
+const config = {
+    IMPOSTOR_QUANTITY: 2,
+
+    VOTE_DURATION: 3 * 60, // 3 minutes,
+    RESULTS_DURATION: 10,
+    LEADER_ACTION_DURATION: 60
+}

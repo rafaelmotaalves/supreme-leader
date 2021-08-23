@@ -12,7 +12,7 @@ class StateLeader {
         }
     }
 
-    getDuration = () => 30
+    getDuration = () => config.LEADER_ACTION_DURATION;
 
     nextState = () => {
         this.game.exilePlayer(null);

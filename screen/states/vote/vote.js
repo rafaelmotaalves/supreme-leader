@@ -76,7 +76,7 @@ class StateVote {
 
 
     // the max duration for the voting time
-    getDuration = () => 60
+    getDuration = () => config.VOTE_DURATION
 
     // the voting time has ended, choose winner based on the one with the most votes
     // notificate the players and go to the next state

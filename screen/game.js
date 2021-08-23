@@ -10,7 +10,7 @@ class Game {
     }
 
     handleEvent(from, data) {
-        console.log(from, data, this.state)
+        console.log(from, data)
         this.state.handleEvent(from, data)
     }
 
@@ -79,7 +79,7 @@ class Game {
     }
     
     getNumberOfImpostors() {
-        return 2;
+        return config.IMPOSTOR_QUANTITY;
     }
 
     allocatePlayers() {
@@ -94,7 +94,6 @@ class Game {
 
     notificatePlayerRoles() {
         this.getPlayers().forEach(player => {
-            console.log(player)
             airconsole.message(player.id, { event: EVENT_PLAYER_ROLE, impostor: player.impostor })
         })
     }

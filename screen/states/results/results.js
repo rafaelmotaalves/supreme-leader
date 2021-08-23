@@ -7,13 +7,12 @@ class StateResults {
 
     handleEvent() {}
 
-    getDuration = () => 5
+    getDuration = () => config.RESULTS_DURATION;
 
     nextState = () => {
         const winners = this.game.checkEndgame();
         
         if (winners) {
-            console.log("GAME ENDEND");
             this.game.endGame();
             return new StateEndgame(this.game)
         }

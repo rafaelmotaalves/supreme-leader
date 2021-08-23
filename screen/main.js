@@ -103,8 +103,9 @@ window.addEventListener("load", async function () {
 })
 
 function formatCounter(milliseconds) {
-    const seconds = Math.floor(milliseconds / 1000) % 60;
-    const minutes = Math.floor(seconds / 60);
+    const allSeconds = Math.floor(milliseconds / 1000)
+    const seconds = Math.floor(allSeconds % 60);
+    const minutes = Math.floor(allSeconds / 60);
 
     const paddedSeconds = padNumber(seconds);
     const paddedMinutes = padNumber(minutes);
