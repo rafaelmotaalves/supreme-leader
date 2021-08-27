@@ -25,8 +25,10 @@ class StateVote {
 
         if (data.event === EVENT_SABOTAGE) {
             this.impostors.add(from);
-
-            this.sabotages.push(parseInt(data.player));
+            
+            if (data.player) {
+                this.sabotages.push(parseInt(data.player));
+            }
         }
 
         if (
@@ -60,7 +62,6 @@ class StateVote {
             if (!this.game.players[target].impostor) {
                 const randomNumber = randomNumberBetween(min, max)
 
-                console.log(randomNumber)
                 if (target == this.game.leader) {
                     console.log("leader")
                     success = randomNumber <= 20;
